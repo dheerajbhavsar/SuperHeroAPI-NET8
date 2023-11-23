@@ -13,7 +13,7 @@ public class SuperHeroController(IRepository repository) : ApiController
     {
         var superHero = await _repo.GetById(id);
 
-        if(superHero is not null)
+        if (superHero is not null)
             return superHero;
 
         return NotFound();
@@ -23,5 +23,31 @@ public class SuperHeroController(IRepository repository) : ApiController
     public async Task<IEnumerable<SuperHero>> GetAll()
     {
         return await _repo.GetAll();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        if(!await _repo.Exist(id))
+            return BadRequest();
+
+        await _repo.DeleteById(id);
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult> Put(int id, SuperHero entity)
+    {
+        if(!await _repo.Exist(id))
+            return BadRequest();
+        await _repo.UpdateById(id, entity);
+        return NoContent();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Post(SuperHero entity)
+    {
+        var superHero = await _repo.Create(entity);
+        return CreatedAtAction("Get", new { id = superHero.Id }, superHero);
     }
 }

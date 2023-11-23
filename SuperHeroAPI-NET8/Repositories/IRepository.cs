@@ -4,8 +4,10 @@ namespace SuperHeroAPI_NET8.Repositories;
 
 public interface IRepository
 {
+    Task<SuperHero> Create(SuperHero entity);
     Task<IEnumerable<SuperHero>> GetAll();
     Task<SuperHero> GetById(int id);
-    void DeleteById(int id);
-    void UpdateById(int id, SuperHero entity);
+    Task DeleteById(int id);
+    Task UpdateById(int id, SuperHero entity);
+    Task<bool> Exist(int id);
 }
