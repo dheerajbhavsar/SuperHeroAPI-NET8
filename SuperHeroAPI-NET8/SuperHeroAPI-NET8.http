@@ -1,0 +1,15 @@
+#@SuperHeroAPI_NET8_HostAddress = http://localhost:5272
+@SuperHeroAPI_NET8_HostAddress = https://wap01cin.azurewebsites.net
+
+GET {{SuperHeroAPI_NET8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{SuperHeroAPI_NET8_HostAddress}}/api/superhero/
+Accept: application/json
+
+###
+
+GET {{SuperHeroAPI_NET8_HostAddress}}/api/superhero/1
+Accept: application/json
