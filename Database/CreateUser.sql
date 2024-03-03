@@ -15,7 +15,7 @@ GO
 --    [ WITH DEFAULT_SCHEMA = <default_schema, sysname, dbo> ]
 -- GO
 
--- Add user to the database owner role
+-- Add user to the database reader and writer role
 EXEC sp_addrolemember N'db_datareader', N'wap01cin'
 GO
 EXEC sp_addrolemember N'db_datawriter', N'wap01cin'
